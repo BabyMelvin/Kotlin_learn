@@ -74,6 +74,28 @@ fun html(init: HTML.() -> Unit): HTML {
 inline fun <T> lock(lock: Lock, body: () -> T): T
 */
 
+// 实例化泛型 reified type parameters
+fun <T> TreeNode.findParentOfType(clazz:Class<T>):T?{
+    var p=parent
+    while(p!=null&&!clazz.isInstance(p)){
+        p=p.parent
+    }
+    @Suppress("UNCHEKED_CAST")
+    return p as T?
+}
+//导致要这样调用
+treeNode.findParentOfType(MyTreeNode::class.java)
+//想要成这样调用
+treeNode.findParentOfType<MyTreeNode>()
+//这就用到reified
+inline fun<reified T> TreeNode.findParantOfType():T?{
+    var p =parent
+    while(p!=null&&p! is T){
+        p=p.parent
+    }
+    return p as T?
+}
+
 fun main(args: Array<String>) {
     //只能这样调用
     foo(baz = 1)
