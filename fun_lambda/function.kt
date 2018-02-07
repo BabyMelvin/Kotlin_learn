@@ -98,9 +98,9 @@ inline fun<reified T> TreeNode.findParantOfType():T?{
 
 fun main(args: Array<String>) {
     //只能这样调用
-    foo(baz = 1)
-    foo(1) { println("hello") }
-    foo { println("hello") }
+    foo(baz = 1)//lambda表达式是默认的
+    foo(1) { println("hello") }//都是不默认
+    foo { println("hello") }//都用默认可以省略
     //4.闭包
     var sum = 0
     listOf(1, 2, 3).filter { it > 0 }.forEach {
