@@ -103,6 +103,7 @@ open class Bas1 {
 /**
  * TODO: 没有静态类
  * 声明一个伴生对象，可以先java一样使用静态方法相同语法调用成员
+ * companion object 声明，然后像java 中static一样使用
  */
 abstract class De : Bas1() {
     abstract override fun f()
